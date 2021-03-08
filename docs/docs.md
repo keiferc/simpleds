@@ -3,7 +3,7 @@
 This page contains the function contracts for all public functions in 
 `simpleds`.
 
-## `simpleds.calc_mean(collection)`
+### `simpleds.calc_mean(collection)`
 
 Parameters:
 
@@ -39,7 +39,7 @@ Examples:
 ```
 
 
-## `simpleds.calc_median(collection)`
+### `simpleds.calc_median(collection)`
 
 Parameters:
 

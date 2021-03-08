@@ -42,6 +42,5 @@ Run `pip3 uninstall simpleds` to uninstall `simpleds`.
 
 ## Documentation
 
-Documentation can is built using `mkdocs`. More information coming soon.
-
+Documentation is built using [MkDocs](https://www.mkdocs.org/).
 
