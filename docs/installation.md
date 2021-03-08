@@ -59,5 +59,5 @@ To run automated tests, run the following in your terminal while in the root
 directory:
 
 ```bash
-pytest
+python3 -m pytest
 ```

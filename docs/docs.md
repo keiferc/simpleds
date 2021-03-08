@@ -21,7 +21,8 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if unable to calculate mean of the given collection. |
+| `ValueError` | Raised if given an empty collection. |
+| `TypeError` | Raised if given a collection of non-numerical values. |
 
 Examples:
 

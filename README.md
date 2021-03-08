@@ -35,7 +35,7 @@ $ make install
 $ make clean
 ```
 
-Run `pytest` to run automated testing.
+Run `python3 -m pytest` to run automated testing.
 
 Run `pip3 uninstall simpleds` to uninstall `simpleds`.
 
