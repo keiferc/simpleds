@@ -1,4 +1,4 @@
-import simpleds.simpleds as sds # not pip packaged import statement
+import simpleds.stats as stats
 
 
 #########################################
@@ -11,4 +11,4 @@ import simpleds.simpleds as sds # not pip packaged import statement
 # Regression Tests                      #
 #########################################
 def test_calc_mean():
-    assert sds.calc_mean([1, 2, 3]) == 2.0
+    assert stats.calc_mean([1, 2, 3]) == 2.0

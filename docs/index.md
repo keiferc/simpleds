@@ -1,4 +1,4 @@
-# Documentation: `simpleds` v0.1.0-alpha
+# Documentation: `simpleds` v0.0.0-pre-alpha
 
 `simpleds` is a lightweight Python 3 package that provides a collection of 
 first-order data science functions with simple and consistent function 
@@ -9,9 +9,9 @@ contracts. `simpleds` is built with a functional programming paradigm and operat
 Please see the [Installation page](installation.md) for more information on
 installing `simpleds`. The [Getting Started page](getting-started.md) has 
 some information on how to import `simpleds` in your projects. The 
-[Docs page](docs.md) has all the public function contracts for `simpleds`.
-Finally, the [Examples page](examples.md) provides examples on how to use
-`simpleds`'s functions in your projects.
+[Docs section](interfaces/stats.md) has all the public function contracts for 
+`simpleds`. Finally, the [Examples page](examples.md) provides examples on 
+how to use `simpleds`'s modules in your projects.
 
 ## Contribution
 
@@ -30,9 +30,10 @@ please follow the contribution guidelines below:
   Therefore, any user should be able to easily infer what a function does with the function name, function parameters, and function return value alone.
 - Run regression tests on changes using `pytest`. For information on how to use 
   pytest, please see the [pytest docs](https://docs.pytest.org/en/stable/contents.html).
-- Update [Docs](docs.md) and the semantic version (top of this page) with 
+- Update [Docs](interfaces/stats.md) and the semantic version (top of this 
+  page) with 
   changes. For information on how to update the documentation, please see the
-  [Mkdocs docs](https://www.mkdocs.org/).
+  [MkDocs docs](https://www.mkdocs.org/).
 - When ready to submit your contribution, please submit a pull request on the
   [`simpleds` GitHub repository](https://github.com/keiferc/simpleds).
 - Add your name/handle/identifier to the list of contributors below.

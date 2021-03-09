@@ -10,20 +10,17 @@ import simpleds
 ```
 
 Functions can then be called using dot notation (e.g. 
-`simpleds.calc_mean(...)`).
+`simpleds.stats.calc_mean(...)`).
 
 
-You can also use name aliases in your import statement. For example:
+You can also import specific modules. For example:
 
 ```python
-import simpleds as sds
+import simpleds.stats as stats
 ```
 
-So that functions can be called using `sds` (e.g. `sds.calc_mean(...)`).
-
-We do not recommend importing `simpleds` functions using the `from`
-syntax as such means of importing can muddy the namespaces of your
-project.
+So that functions can be called using the module name (e.g. 
+`stats.calc_mean(...)`).
 
 ## Using `simpleds`
 
@@ -31,4 +28,4 @@ project.
 `calc_standard_error(...)`) and follow the functional programming
 paradigm. In other words, `simpleds` functions will always take an input,
 return a value, and will never change a state. Available `simpleds` functions
-can be found in the [Docs page](docs.md).
+can be found in the [Docs section](stats.md).

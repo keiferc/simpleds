@@ -30,7 +30,6 @@ pip3 uninstall simpleds
 
 - Python 3
 - pip3
-- Make
 
 ### Installation
 
@@ -41,8 +40,7 @@ git clone https://github.com/keiferc/simpleds.git
 cd simpleds
 python3 -m venv venv # we recommend using a virtual environment
 source venv/bin/activate
-make install
-make clean
+pip3 install -e .[dev] # note: may need to escape square brackets if using zsh
 ```
 
 ### Uninstallation

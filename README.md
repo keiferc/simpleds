@@ -1,9 +1,9 @@
-# simpleds
+# simpleds 
 
-A lightweight Python 3 package containing module `simpleds` that provides a
-collection of first-order data science functions with simple and consistent 
-function contracts. Built with a functional programming paradigm and functions
-as a simplifying wrapper for major Python data science modules (e.g. `numpy`,
+A lightweight Python 3 package containing modules that provide a collection 
+of first-order data science functions with simple and consistent function 
+contracts. Built with a functional programming paradigm and functions as a 
+simplifying wrapper for major Python data science modules (e.g. `numpy`,
 `scipy`, etc).
 
 
@@ -31,8 +31,7 @@ $ git clone https://github.com/keiferc/simpleds.git
 $ cd simpleds
 $ python3 -m venv venv # we recommend using a virtual environment
 $ source venv/bin/activate
-$ make install
-$ make clean
+$ pip3 install -e .[dev] # note: may need to escape brackets if using zsh
 ```
 
 Run `python3 -m pytest` to run automated testing.

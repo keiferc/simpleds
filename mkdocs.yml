@@ -4,5 +4,6 @@ nav:
     - Overview: index.md
     - Installation: installation.md
     - Getting Started: getting-started.md
-    - Docs: docs.md
+    - Docs:
+        - simpleds.stats: interfaces/stats.md
     - Examples: examples.md

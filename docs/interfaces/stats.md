@@ -1,9 +1,9 @@
-# Docs
+# simpleds.stats
 
 This page contains the function contracts for all public functions in 
-`simpleds`.
+`simpleds.stats`.
 
-### `simpleds.calc_mean(collection)`
+### `simpleds.stats.calc_mean(collection)`
 
 Parameters:
 
@@ -27,20 +27,20 @@ Raises:
 Examples:
 
 ```python
->>> simpleds.calc_mean([1, 2, 4])
+>>> simpleds.stats.calc_mean([1, 2, 4])
 2.3333333333333335
 ```
 ```python
->>> simpleds.calc_mean([3, 1, 2, 4])
+>>> simpleds.stats.calc_mean([3, 1, 2, 4])
 2.5
 ```
 ```python
->>> simpleds.calc_mean((3, 1.0, 2, 4))
+>>> simpleds.stats.calc_mean((3, 1.0, 2, 4))
 2.5
 ```
 
 
-### `simpleds.calc_median(collection)`
+### `simpleds.stats.calc_median(collection)`
 
 Parameters:
 
@@ -59,18 +59,19 @@ Raises:
 | Type | Description |
 | ---- | ----------- |
 | `ValueError` | Raised if unable to calculate median of the given collection. |
+| `TypeError` | Raised if given a collection of non-numerical values. |
 
 Examples:
 
 ```python
->>> simpleds.calc_median([1, 2, 4])
+>>> simpleds.stats.calc_median([1, 2, 4])
 2.0
 ```
 ```python
->>> simpleds.calc_median([3, 1, 2, 4])
+>>> simpleds.stats.calc_median([3, 1, 2, 4])
 2.5
 ```
 ```python
->>> simpleds.calc_median((3, 1.0, 2, 4))
+>>> simpleds.stats.calc_median((3, 1.0, 2, 4))
 2.5
 ```
