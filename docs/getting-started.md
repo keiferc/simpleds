@@ -28,4 +28,4 @@ So that functions can be called using the module name (e.g.
 `calc_standard_error(...)`) and follow the functional programming
 paradigm. In other words, `simpleds` functions will always take an input,
 return a value, and will never change a state. Available `simpleds` functions
-can be found in the [Docs section](stats.md).
+can be found in the [Docs section](interfaces/stats.md).
