@@ -7,13 +7,14 @@ on data tables (e.g. dataframes, ndarrays, iterables).
 ## Functions
 
 ### `simpleds.tables.flatten(collection)`
-A generator that recursively flattens a given collection.
+A generator that recursively flattens a given collection. *Note*: this 
+function treats strings as non-iterables.
 
 Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers. If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of values. | *required* |
 
 Returns:
 
@@ -21,10 +22,21 @@ Returns:
 | ---- | ----------- | 
 | `Generator` | A generator that yields the next flattened element in the given collection. |
 
+Raises:
+
+| Error | Description |
+| ---- | ----------- |
+| `TypeError` | Raised if given a non-iterable. *Note*: this function treats strings as non-iterables.|
+
 Examples:
 
 ```python
-# Calculating mean on a one-dimensional list of integers # TODO
->>> simpleds.stats.calc_mean([1, 2, 4])
-2.3333333333333335
+# Flattening an irregular multi-dimensional list of integers
+>>> list(tables.flatten([[[1], [2, 3]], 4]))
+[1, 2, 3, 4]
+```
+```python
+# Flattening an irregular multi-dimensional collection of mixed values
+>>> list(tables.flatten({'a': [1.0, {'bar'}], 'b': (-2, True)}))
+[1.0, 'bar', -2, True]
 ```

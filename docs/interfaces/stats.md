@@ -71,7 +71,7 @@ Returns:
 
 Raises:
 
-| Type | Description |
+| Error | Description |
 | ---- | ----------- |
 | `ValueError` | Raised if unable to calculate median of the given collection. |
 | `TypeError` | Raised if given a collection of non-numerical values. |

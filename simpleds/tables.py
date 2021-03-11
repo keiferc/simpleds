@@ -25,7 +25,7 @@ import pandas as pd
 import numpy as np 
 import scipy as sp 
 
-from typing import Any, Generator, Iterable
+from typing import Any, Dict, Generator, Iterable
 
 
 #########################################
@@ -34,7 +34,7 @@ from typing import Any, Generator, Iterable
 #                                       #
 #########################################
 
-def flatten(collection: Iterable[Any]) -> Iterable[Any]:
+def flatten(collection: Iterable[Any]) -> Generator:
     """
     Note: since generators return generator objects, and since strings are 
     iterables of strings, recursively returning a generator object on a string
@@ -44,12 +44,18 @@ def flatten(collection: Iterable[Any]) -> Iterable[Any]:
     """
     if isinstance(collection, str):
         raise TypeError() # tells generator to return string as is
-
+    
     for item in collection: # raises TypeError is item is not an iterable
-        try: 
-            yield from flatten(item) # propagates TypeError from subgenerator
-        except TypeError: 
-            yield item # returns item if it is not an iterable
+        try: # propagates TypeError from subgenerator
+            if isinstance(collection, dict):
+                yield from flatten(collection[item])
+            else:
+                yield from flatten(item) 
+        except TypeError: # returns item if it is not an iterable
+            if isinstance(collection, dict):
+                yield collection[item]
+            else:
+                yield item 
 
 
 #########################################
@@ -57,4 +63,5 @@ def flatten(collection: Iterable[Any]) -> Iterable[Any]:
 #       Private Function Definitions    #
 #                                       #
 #########################################
+
 
