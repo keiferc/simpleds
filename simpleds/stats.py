@@ -49,13 +49,17 @@ Number = TypeVar('Number', int, float, complex)
 #########################################
 
 def calc_mean(collection: Union[Iterable[Number], Iterable[Any]],
-              to_number: Optional[Callable[Any, Number]]) -> float:
+              to_number: Optional[Callable[Any, Number]] = None) -> float:
     new_collection = collection
     
     if to_number != None:
         new_collection = list(map(to_number, new_collection))
 
-    new_collection = list(tables.flatten(new_collection))
+    try:
+        new_collection = list(tables.flatten(new_collection))
+    except TypeError:
+        raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
+                        "'{}'. Improper format.".format(collection))
 
     if len(new_collection) == 0:
         raise ValueError("stats.calc_mean: Cannot calculate mean on " + \
