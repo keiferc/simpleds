@@ -1,14 +1,7 @@
 # simpleds.stats
 
-This page contains the function contracts for all public functions in 
-`simpleds.stats`.
-
-
-## Type Aliases
-
-### `Number`
-An `int`, a `float`, or a `complex`.
-
+`simpleds.stats` is a Python 3 module that contains simple statistical 
+functions for data science usage.
 
 ## Functions
 

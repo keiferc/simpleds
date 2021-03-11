@@ -62,30 +62,4 @@ import simpleds.stats as stats
 
 ######## Private Helper Functions ########
 
-def test___flatten():
-    # Given lists
-    assert list(stats.__flatten([])) == []
-    assert list(stats.__flatten([[]])) == [] # 2d empty
-    assert list(stats.__flatten([[[]]])) == [] # 3d empty
-    assert list(stats.__flatten([1, 2, 3, 4])) == [1, 2, 3, 4]
-    assert list(stats.__flatten([[1, 2], [3, 4]])) == [1, 2, 3, 4] # 2d
-    assert list(stats.__flatten([[1, 2], [3], 4])) == [1, 2, 3, 4] # 2d irreg
-    assert list(stats.__flatten([[[1], [2, 3]], 4])) == [1, 2, 3, 4] # 3d irreg
 
-    # Given sets
-    assert list(stats.__flatten(set())) == []
-    assert list(stats.__flatten(set(set()))) == [] # 2d empty
-    assert list( stats.__flatten(set(set(set())))) == [] # 3d empty
-    assert list(stats.__flatten((1, 2, 3, 4))) == [1, 2, 3, 4]
-    assert list(stats.__flatten(((1, 2), (3, 4)))) == [1, 2, 3, 4] # 2d
-    assert list(stats.__flatten(((1, 2), (3), 4))) == [1, 2, 3, 4] # 2d irreg
-    assert list(stats.__flatten((((1), (2, 3)), 4))) == [1, 2, 3, 4] # 3d irreg
-
-    # Given dicts
-
-
-    # Given strings
-    assert list(stats.__flatten([1, 3.0, 'foo'])) == [1, 3.0, 'foo'] # mix with string
-
-
-    # Given non-iterables
