@@ -60,6 +60,10 @@ def test_calc_mean():
     # Given a flattenable empty collection
     with pytest.raises(ValueError):
         stats.calc_mean({'val1': [], 'val2': {'v1': [[]]}})
+    
+    # Given a bad mapping function
+    with pytest.raises(ValueError):
+        stats.calc_mean([1, 2], lambda: x / 0)
 
 
 def test_calc_median():
@@ -107,6 +111,10 @@ def test_calc_median():
     # Given a flattenable empty collection
     with pytest.raises(ValueError):
         stats.calc_median({'val1': [], 'val2': {'v1': [[]]}})
+
+    # Given a bad mapping function
+    with pytest.raises(ValueError):
+        stats.calc_median([1, 2], lambda: x / 0)
 
 
 def test_count_occurrences():

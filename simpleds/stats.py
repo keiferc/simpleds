@@ -50,16 +50,12 @@ Number = TypeVar('Number', int, float, complex)
 
 def calc_mean(collection: Iterable[Any],
               to_number: Optional[Callable[Any, Number]] = None) -> float:
-    new_collection = collection
-    
-    if to_number != None:
-        new_collection = list(map(to_number, new_collection))
-
     try:
-        new_collection = list(tables.flatten(new_collection))
-    except TypeError:
-        raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
-                        "'{}'. Improper format.".format(collection))
+        new_collection = __map_and_flatten_collection(collection, to_number)
+    except TypeError as e:
+        raise TypeError("stats.calc_mean: {}".format(e))
+    except ValueError as e:
+        raise ValueError("stats.calc_mean: {}".format(e))
 
     if len(new_collection) == 0:
         raise ValueError("stats.calc_mean: Cannot calculate mean on " + \
@@ -69,21 +65,17 @@ def calc_mean(collection: Iterable[Any],
         return float(np.mean(new_collection))
     except TypeError:
         raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
-                        "'{}'. Improper format.".format(collection))
+                        "'{}'. Improper element types.".format(collection))
 
 
 def calc_median(collection: Iterable[Any],
                 to_number: Optional[Callable[[Any], Number]] = None) -> float:
-    new_collection = collection
-    
-    if to_number != None:
-        new_collection = list(map(to_number, new_collection))
-
     try:
-        new_collection = list(tables.flatten(new_collection))
-    except TypeError:
-        raise TypeError("stats.calc_median: Cannot calculate median on " + \
-                        "'{}'. Improper format.".format(collection))
+        new_collection = __map_and_flatten_collection(collection, to_number)
+    except TypeError as e:
+        raise TypeError("stats.calc_median: {}".format(e))
+    except ValueError as e:
+        raise ValueError("stats.calc_median: {}".format(e))
 
     if len(new_collection) == 0:
         raise ValueError("stats.calc_median: Cannot calculate median on " + \
@@ -93,7 +85,7 @@ def calc_median(collection: Iterable[Any],
         return float(np.median(new_collection))
     except TypeError:
         raise TypeError("stats.calc_median: Cannot calculate median on " + \
-                        "'{}'. Improper format.".format(collection))
+                        "'{}'. Improper element types.".format(collection))
 
 
 # def calc_mode(collection: Iterable[Any],
