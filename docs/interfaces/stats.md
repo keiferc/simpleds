@@ -5,7 +5,7 @@ functions for data science usage.
 
 ## Functions
 
-### `simpleds.stats.calc_mean(collection, Optional[to_number])`
+### `simpleds.stats.calc_mean(collection, to_number = None)`
 Parameters:
 
 | Name | Type | Description | Default |
@@ -40,7 +40,7 @@ Examples:
 ```
 ```python
 # Calculating mean on a set of numbers
->>> simpleds.stats.calc_mean((3, 1.0, 2, 4))
+>>> simpleds.stats.calc_mean({3, 1.0, 2, 4})
 2.5
 ```
 ```python
@@ -54,8 +54,13 @@ Examples:
 ...                          lambda tup: tup[1])
 6.666666666666667
 ```
+```python
+# Calculating mean on a hybrid collection of numbers
+>>> stats.calc_mean({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
+3.0
+```
 
-### `simpleds.stats.calc_median(collection, Optional[to_number])`
+### `simpleds.stats.calc_median(collection, to_number = None)`
 
 Parameters:
 
@@ -68,7 +73,7 @@ Returns:
 
 | Type | Description |
 | ---- | ----------- | 
-| `float` | The median of the given collection of numbers. *Note*: Python 3 floating point precision errors apply. |
+| `float` | The median of the given collection of numbers. Returns the mean of the middle two numbers if given a collection with an even number of elements. *Note*: Python 3 floating point precision errors apply. |
 
 Raises:
 
@@ -80,14 +85,33 @@ Raises:
 Examples:
 
 ```python
->>> simpleds.stats.calc_median([1, 2, 4])
+# Calculating median on a one-dimensional list of integers
+>>> stats.calc_median([1, 2, 4])
 2.0
 ```
 ```python
->>> simpleds.stats.calc_median([3, 1, 2, 4])
+# Calculating median on an irregular n-dimensional list of floats
+>>> stats.calc_median([[[1.0, 5.0], [2.0, 4.0]], [3.0]])
+3.0
+```
+```python
+# Calculating median on a set of numbers
+>>> stats.calc_median({3, 1.0, 2, 4})
 2.5
 ```
 ```python
->>> simpleds.stats.calc_median((3, 1.0, 2, 4))
-2.5
+# Calculating median on a dict of integers
+>>> stats.calc_median({'val1': 11, 'val2': 7, 'val5': 2})
+7.0
+```
+```python
+# Calculating median on a collection of non-numbers (string-integer tuples)
+>>> stats.calc_median([('val1', 11), ('val2', 7), ('val5', 2)], 
+...                   lambda tup: tup[1])
+7.0
+```
+```python
+# Calculating median on a hybrid collection of numbers
+>>> stats.calc_median({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
+3.0
 ```
