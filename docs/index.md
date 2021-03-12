@@ -4,6 +4,15 @@
 first-order data science functions with simple and consistent function 
 contracts. `simpleds` is built with a functional programming paradigm and operates as a simplifying wrapper for major Python data science modules (e.g. `numpy`, `scipy`, etc).
 
+The underlying idea of `simpleds` is that one doesn't need an airplane to get
+to the bodega across the street; it can get time-consuming digging through
+the various docs to just to do something simple. `simpleds` attempts to avoid 
+the need to switch between different packages and package-specific data 
+structures for the everyday-type of data analysis. Because sometimes all one
+wants is to find central tendencies, test hypotheses, and calculate
+significances in one simple way. 
+
+
 ## Documentation Overview
 
 Please see the [Installation page](installation.md) for more information on
@@ -24,12 +33,13 @@ please follow the contribution guidelines below:
     - Use four-character indents.
     - Follow pythonic casing for function, variable, and file names.
     - Create descriptive names that follow their natural language equivalent.
-      For example, name functions/methods as verbs, name classes/attributes/modules as nouns, and name conditional functions/booleans as questions 
+      For example, name functions/methods as verbs, name classes/attributes/
+      modules as nouns, and name conditional functions/booleans as questions 
       (e.g. `is_empty`).
 - Readability is a priority and cannot be at the expense of optimization. 
   Therefore, any user should be able to easily infer what a function does with the function name, function parameters, and function return value alone.
-- Run regression tests on changes using `pytest`. For information on how to use 
-  pytest, please see the [pytest docs](https://docs.pytest.org/en/stable/contents.html).
+- Run regression tests on changes using `python3 -m pytest`. For information on
+  how to use pytest, please see the [pytest docs](https://docs.pytest.org/en/stable/contents.html).
 - Update [Docs](interfaces/stats.md) and the semantic version (top of this 
   page) with 
   changes. For information on how to update the documentation, please see the
