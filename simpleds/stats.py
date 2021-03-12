@@ -63,9 +63,10 @@ def calc_mean(collection: Iterable[Any],
 
     try:
         return float(np.mean(new_collection))
-    except TypeError:
+    except TypeError as e:
         raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
-                        "'{}'. Improper element types.".format(collection))
+                        "'{}'. ".format(new_collection) + \
+                        "Improper element types. {}".format(e))
 
 
 def calc_median(collection: Iterable[Any],
@@ -83,28 +84,39 @@ def calc_median(collection: Iterable[Any],
 
     try:
         return float(np.median(new_collection))
-    except TypeError:
+    except TypeError as e:
         raise TypeError("stats.calc_median: Cannot calculate median on " + \
-                        "'{}'. Improper element types.".format(collection))
+                        "'{}'. ".format(new_collection) + \
+                        "Improper element types. {}".format(e))
 
 
 # def calc_mode(collection: Iterable[Any],
-#               to_map: Optional[Callable[[Any], Hashable]] = None) -> Any:
+#               to_hashable: Optional[Callable[[Any], Hashable]] = None) -> Any:
 #     """
 #     Note: should be faster than scipy.stats.mode(...) since scipy's function
 #     loops per unique value (O(n^2)). TODO: test speed for verification.
     
 #     """
-#     occurrences = count_occurences(collection, to_map)
+#     occurrences = count_value_occurences(collection, to_map)
 #     return max(occurrences, key = lambda x : occurrences[x])
 
 
 def count_occurrences(collection: Iterable[Any],
-                      to_map: Optional[Callable[[Any], Hashable]] = None
+                      to_hashable: Optional[Callable[[Any], Hashable]] = None
         ) -> Dict[Hashable, int]:
-    new_collection = collection
-    pass # TODO
-
+    try:
+        new_collection = __map_and_flatten_collection(collection, to_hashable)
+    except TypeError as e:
+        raise TypeError("stats.count_occurrence: {}".format(e))
+    except ValueError as e:
+        raise ValueError("stats.count_occurrence: {}".format(e))
+    
+    try:
+        items, occurrences = np.unique(new_collection, return_counts = True)
+        return dict(zip(items, occurrences))
+    except Exception as e:
+        raise TypeError("stats.count_occurrence: Cannot count occurrences " + \
+                        "on '{}'. {}".format(new_collection, e))
 
 
 #########################################

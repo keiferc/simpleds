@@ -118,7 +118,52 @@ def test_calc_median():
 
 
 def test_count_occurrences():
-    pass
+    # Counting occurrences on a one-dimensional list of integers
+    assert stats.count_occurrences([1, 2, 4]) == {1: 1, 2: 1, 4: 1}
+
+    # Counting occurrences on an irregular n-dimensional list of floats
+    assert stats.count_occurrences([[[1.0, 5.0], [2.0, 4.0]], [3.0, 2.0]]) \
+        == {1.0: 1, 2.0: 2, 3.0: 1, 4.0: 1, 5.0: 1}
+
+    # Counting occurrences on a set of numbers (sets can't have duplicates)
+    assert stats.count_occurrences({3, 1.0, 2, 1.5, 4, 1, 1}) \
+        == {1: 1, 2: 1, 3: 1, 4: 1, 1.5: 1}
+
+    # Counting occurrences on a dict of integers
+    assert stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11}) \
+        == {7:1, 11: 2}
+
+    # Counting occurrences of second values in a 2-tuple of strings
+    assert stats.count_occurrences([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+                                   lambda tup: tup[1]) == {'x': 2, 'y': 1}
+
+    # Counting occurrences on a flattenable, hybrid collection of numbers
+    assert stats.count_occurrences({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5}) \
+        == {2: 3, 3: 1, 5: 1}
+    
+    # Counting occurrences on a flattenable, hybrid collection of values
+    assert stats.count_occurrences(
+            {'val1': 11, 'val2': {'x': 5, 'y': 'foo'}, 'val5': 2}) \
+        == {'11': 1, '2': 1, '5': 1, 'foo': 1}
+    
+    # Counting occurrences on an empty list
+    assert stats.count_occurrences([]) == dict()
+
+    # Counting occurrences on an empty hybrid collection
+    assert stats.count_occurrences({'val1': [], 'val2': {'v1': []}}) == dict()
+
+    # Given a string (collection of chars)
+    with pytest.raises(TypeError):
+        stats.count_occurrences('foo')
+
+    # Given a non-collection
+    with pytest.raises(TypeError):
+        stats.count_occurrences(lambda x: x)
+
+    # Given a bad mapping function
+    with pytest.raises(ValueError):
+        stats.count_occurrences([1, 2], lambda: x / 0)
+
 
 
 ######## Private Helper Functions ########
