@@ -23,7 +23,7 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if calculating mean on an empty collection. |
+| `ValueError` | Raised if unable to calculate mean (e.g. empty collection, failed mapping). |
 | `TypeError` | Raised if calculating mean on something other than a collection of numbers. |
 
 Examples:
@@ -79,7 +79,7 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if calculating median on an empty collection. |
+| `ValueError` | Raised if unable to calculate mean (e.g. empty collection, failed mapping). |
 | `TypeError` | Raised if calculating median on something other than a collection of numbers. |
 
 Examples:
