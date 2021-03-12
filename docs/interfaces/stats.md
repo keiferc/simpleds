@@ -10,7 +10,7 @@ Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
 
 Returns:
@@ -66,7 +66,7 @@ Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
 
 Returns:
@@ -114,4 +114,92 @@ Examples:
 # Calculating median on a hybrid collection of numbers
 >>> stats.calc_median({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
 3.0
+```
+
+### `simpleds.stats.calc_mode(collection, to_hashable = None)`
+
+Parameters:
+
+| Name | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of hashables. If a collection of non-hashables is provided, user can provide `to_hashable` for mapping. | *required* |
+| `to_hashable` | `Callable[[Any], Hashable]` | A function that takes in any type and returns a corresponding hashable. | *optional* |
+
+Returns:
+
+| Type | Description |
+| ---- | ----------- | 
+| `Hashable` | The mode of a given collection of hashables. |
+
+Raises:
+
+| Type | Description |
+| ---- | ----------- |
+| `ValueError` | Raised if unable to calculate mode (e.g. empty collection, failed mapping). |
+| `TypeError` | Raised if calculating mode on something other than a collection of hashables. |
+
+Examples:
+
+```python
+# Coming soon
+```
+
+### `simpleds.stats.count_occurrences(collection, to_hashable = None)`
+
+Counts the number of times a value occurs in the collection.
+
+Parameters:
+
+| Name | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of hashables. If a collection of non-hashables is provided, user can provide `to_hashable` for mapping. | *required* |
+| `to_hashable` | `Callable[[Any], Hashable]` | A function that takes in any type and returns a corresponding hashable. | *optional* |
+
+Returns:
+
+| Type | Description |
+| ---- | ----------- | 
+| `Dict[Hashable, int]` | A dictionary where the key is the hashable and the value is the number of times the hashable occurs in the collection. |
+
+Raises:
+
+| Type | Description |
+| ---- | ----------- |
+| `ValueError` | Raised if given `to_hashable` fails to map. |
+| `TypeError` | Raised if counting occurrences on something other than a collection of hashables. |
+
+Examples:
+
+```python
+# Counting occurrences on a one-dimensional list of integers
+>>> stats.count_occurrences([1, 2, 4])
+{1: 1, 2: 1, 4: 1}
+```
+```python
+# Counting occurrences on an irregular n-dimensional list of floats
+>>> stats.count_occurrences([[[1.0, 5.0], [2.0, 4.0]], [3.0, 2.0]])
+{1.0: 1, 2.0: 2, 3.0: 1, 4.0: 1, 5.0: 1}
+```
+``` python
+# Counting occurrences on a set of numbers (sets can't have duplicates)
+>>> stats.count_occurrences({3, 1.0, 2, 1.5, 4, 1, 1})
+{1: 1, 2: 1, 3: 1, 4: 1, 1.5: 1}
+```
+```python
+# Counting occurrences on a dict of integers
+>>> stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11}) \
+{7:1, 11: 2}
+```
+```python
+# Counting occurrences of second values in a 2-tuple of strings
+>>> stats.count_occurrences([('val1', 'x'), ('val2', 'x'), ('val5', 'y')],
+...                         lambda tup: tup[1])
+{'x': 2, 'y': 1}
+```
+```python
+# Counting occurrences on a hybrid collection of values
+>>> stats.count_occurrences({'val1': 11, 
+                             'val2': {'x': 5, 'y': 'foo'}, 
+                             'val5': (2, 2.0)})
+{'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
 ```

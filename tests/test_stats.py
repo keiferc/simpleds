@@ -143,8 +143,8 @@ def test_count_occurrences():
     
     # Counting occurrences on a flattenable, hybrid collection of values
     assert stats.count_occurrences(
-            {'val1': 11, 'val2': {'x': 5, 'y': 'foo'}, 'val5': 2}) \
-        == {'11': 1, '2': 1, '5': 1, 'foo': 1}
+            {'val1': 11, 'val2': {'x': 5, 'y': 'foo'}, 'val5': (2, 2.0)}) \
+        == {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
     
     # Counting occurrences on an empty list
     assert stats.count_occurrences([]) == dict()
