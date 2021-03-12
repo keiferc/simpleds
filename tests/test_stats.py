@@ -109,6 +109,51 @@ def test_calc_median():
         stats.calc_median({'val1': [], 'val2': {'v1': [[]]}})
 
 
+def test_count_occurrences():
+    pass
+
+
 ######## Private Helper Functions ########
 
+def test___map_and_flatten_collection():
+    # Called on a one-dimensional list of integers
+    assert stats.__map_and_flatten_collection([1, 2, 4]) == [1, 2, 4]
 
+    # Called on an irregular n-dimensional list of floats
+    assert stats.__map_and_flatten_collection(
+            [[[1.0, 5.0], [2.0, 4.0]], [3.0]]) == [1.0, 5.0, 2.0, 4.0, 3.0]
+
+    # Called on a set of numbers
+    assert stats.__map_and_flatten_collection({3, 1.0, 2, 4}) == [1.0, 2, 3, 4]
+
+    # Called on a dict of integers
+    assert stats.__map_and_flatten_collection(
+            {'val1': 11, 'val2': 7, 'val5': 2}) == [11, 7, 2]
+
+    # Called on a collection of non-numbers (string-integer tuples)
+    assert stats.__map_and_flatten_collection(
+            [('val1', 11), ('val2', 7), ('val5', 2)], lambda tup: tup[1]) \
+        == [11, 7, 2]
+
+    # Called on a flattenable, hybrid collection of numbers
+    assert stats.__map_and_flatten_collection(
+            {'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5}) \
+        == [1.0, 2.0, 3.0, 4, 5]
+
+    # Called on a mixed collection
+    assert stats.__map_and_flatten_collection([1, 3.0, 'foo']) \
+        == [1, 3.0, 'foo']
+    assert stats.__map_and_flatten_collection(
+            {'a': [1.0, {'bar'}], 'b': (-2, True)}) == [1.0, 'bar', -2, True]
+        
+    # Given a string (collection of chars)
+    with pytest.raises(TypeError):
+        stats.__map_and_flatten_collection('foo')
+
+    # Given a non-collection
+    with pytest.raises(TypeError):
+        stats.__map_and_flatten_collection(lambda x: x)
+    
+    # Given a bad mapping function
+    with pytest.raises(ValueError):
+        stats.__map_and_flatten_collection([1, 2], lambda x : x / 0)

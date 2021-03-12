@@ -48,7 +48,7 @@ Number = TypeVar('Number', int, float, complex)
 #                                       #
 #########################################
 
-def calc_mean(collection: Union[Iterable[Number], Iterable[Any]],
+def calc_mean(collection: Iterable[Any],
               to_number: Optional[Callable[Any, Number]] = None) -> float:
     new_collection = collection
     
@@ -72,7 +72,7 @@ def calc_mean(collection: Union[Iterable[Number], Iterable[Any]],
                         "'{}'. Improper format.".format(collection))
 
 
-def calc_median(collection: Union[Iterable[Number], Iterable[Any]],
+def calc_median(collection: Iterable[Any],
                 to_number: Optional[Callable[[Any], Number]] = None) -> float:
     new_collection = collection
     
@@ -82,17 +82,17 @@ def calc_median(collection: Union[Iterable[Number], Iterable[Any]],
     try:
         new_collection = list(tables.flatten(new_collection))
     except TypeError:
-        raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
+        raise TypeError("stats.calc_median: Cannot calculate median on " + \
                         "'{}'. Improper format.".format(collection))
 
     if len(new_collection) == 0:
-        raise ValueError("stats.calc_mean: Cannot calculate mean on " + \
+        raise ValueError("stats.calc_median: Cannot calculate median on " + \
                          "an empty collection.")
 
     try:
         return float(np.median(new_collection))
     except TypeError:
-        raise TypeError("stats.calc_mean: Cannot calculate mean on " + \
+        raise TypeError("stats.calc_median: Cannot calculate median on " + \
                         "'{}'. Improper format.".format(collection))
 
 
@@ -110,7 +110,9 @@ def calc_median(collection: Union[Iterable[Number], Iterable[Any]],
 def count_occurrences(collection: Iterable[Any],
                       to_map: Optional[Callable[[Any], Hashable]] = None
         ) -> Dict[Hashable, int]:
-    pass
+    new_collection = collection
+    pass # TODO
+
 
 
 #########################################
@@ -118,4 +120,33 @@ def count_occurrences(collection: Iterable[Any],
 #       Private Function Definitions    #
 #                                       #
 #########################################
+
+def __map_and_flatten_collection(collection: Iterable[Any],
+                                 to_map: Optional[Callable[[Any], Any]] = None
+        ) -> Iterable[Any]:
+    """
+    Given a collection and an optional mapping function, returns the processed 
+    collection. Helper to functions that need collection prepped. 
+    
+    Raises 
+        TypeError if given Iterable is not a flattenable Tabular post-mapping.
+        ValueError if given to_map has a RuntimeError
+
+    """
+    new_collection = collection
+    
+    if to_map != None:
+        try:
+            new_collection = list(map(to_map, new_collection))
+        except Exception as e:
+            raise ValueError("Failed to map function " + \
+                             "'{}'. {}".format(to_map, e))
+
+    try:
+        new_collection = list(tables.flatten(new_collection))
+    except TypeError:
+        raise TypeError("Improper format. '{}' is not a " + \
+                        "Tabular.".format(collection))
+    
+    return new_collection
 
