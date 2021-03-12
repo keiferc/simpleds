@@ -1,10 +1,8 @@
 # simpleds 
 
-A Python 3 package containing modules that provide a collection of 
-first-order data science functions with simple and consistent function 
-contracts. Built with a functional programming paradigm and functions as a 
-simplifying wrapper for major Python data science modules (e.g. `numpy`,
-`scipy`, `pandas`, etc).
+`simpleds` is a Python 3 package that provides a collection of higher-order 
+data science functions with simple and consistent function contracts. 
+`simpleds` is built with a functional programming paradigm and operates as a simplifying wrapper for major Python data science modules (e.g. `numpy`, `scipy`, `pandas`, etc).
 
 The underlying idea of `simpleds` is that one doesn't need an airplane to get
 to the bodega across the street; it can get time-consuming digging through
@@ -12,7 +10,7 @@ the various docs to just to do something simple. `simpleds` attempts to avoid
 the need to switch between different packages and package-specific data 
 structures for the everyday-type of data analysis. Because sometimes all one
 wants is to find central tendencies, test hypotheses, and calculate
-significances in one simple way. 
+significances in one simple way on Python's built-in data types/containers. 
 
 
 ## Requirements
