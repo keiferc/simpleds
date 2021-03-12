@@ -6,6 +6,8 @@ functions for data science usage.
 ## Functions
 
 ### `simpleds.stats.calc_mean(collection, to_number = None)`
+Returns the mean of a given collection.
+
 Parameters:
 
 | Name | Type | Description | Default |
@@ -61,6 +63,7 @@ Examples:
 ```
 
 ### `simpleds.stats.calc_median(collection, to_number = None)`
+Returns the median of a given collection.
 
 Parameters:
 
@@ -117,6 +120,8 @@ Examples:
 ```
 
 ### `simpleds.stats.calc_mode(collection, to_hashable = None)`
+Returns the mode of a given collection. *Note*: numpy type casting applies to
+return values.
 
 Parameters:
 
@@ -129,7 +134,7 @@ Returns:
 
 | Type | Description |
 | ---- | ----------- | 
-| `Hashable` | The mode of a given collection of hashables. |
+| `Hashable` | The mode of a given collection of hashables. If there's a tie, the left-most (sorted in ascending order) is returned. *Note*: numpy type casting applies to return values. |
 
 Raises:
 
@@ -141,12 +146,52 @@ Raises:
 Examples:
 
 ```python
-# Coming soon
+# Called on a one-dimensional list of integers
+>>> stats.calc_mode([1, 2, 2, 4])
+2
+```
+```python
+# Called on a one-dimensional list of numbers
+>>> stats.calc_mode([1, 2, 2.0, 4, 1.0])
+1.0
+```
+```python
+# Called on an irregular n-dimensional list of floats
+>>> stats.calc_mode([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
+5.0
+```
+```python
+# Called on a set of numbers (note: sets can only contain unique elements)
+>>> stats.calc_mode({3, 1.0, 2, 2, 2, 1, 4})
+1.0
+```
+```python
+# Called on a dict of integers
+>>> stats.calc_mode({'val1': 11, 'val2': 7, 'val5': 11})
+11
+```
+```python
+# Called on second values in a 2-tuple of strings
+>>> stats.calc_mode([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+...                 lambda tup: tup[1])
+'x'
+```
+```python
+# Called on a hybrid collection of numbers
+>>> stats.calc_mode({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
+2.0
+```
+```python
+# Called on a hybrid collection of values
+>>> stats.calc_mode({'val1': 11, 
+                     'val2': {'x': 5, 'y': 'foo'}, 
+                     'val5': (2, 2.0)})
+'11'
 ```
 
 ### `simpleds.stats.count_occurrences(collection, to_hashable = None)`
 
-Counts the number of times a value occurs in the collection.
+Counts the number of times a value occurs in the collection. *Note*: numpy type casting applies to returned `dict`'s keys.
 
 Parameters:
 
@@ -159,7 +204,7 @@ Returns:
 
 | Type | Description |
 | ---- | ----------- | 
-| `Dict[Hashable, int]` | A dictionary where the key is the hashable and the value is the number of times the hashable occurs in the collection. |
+| `Dict[Hashable, int]` | A dictionary where the key is the hashable and the value is the number of times the hashable occurs in the collection. *Note*: numpy type casting applies to returned `dict`'s keys. |
 
 Raises:
 
@@ -183,7 +228,7 @@ Examples:
 ``` python
 # Counting occurrences on a set of numbers (sets can't have duplicates)
 >>> stats.count_occurrences({3, 1.0, 2, 1.5, 4, 1, 1})
-{1: 1, 2: 1, 3: 1, 4: 1, 1.5: 1}
+{1.0: 1, 1.5: 1, 2.0: 1, 3.0: 1, 4.0: 1}
 ```
 ```python
 # Counting occurrences on a dict of integers

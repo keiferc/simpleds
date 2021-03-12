@@ -48,6 +48,24 @@ Number = TypeVar('Number', int, float, complex)
 #                                       #
 #########################################
 
+def count_occurrences(collection: Iterable[Any],
+                      to_hashable: Optional[Callable[[Any], Hashable]] = None
+        ) -> Dict[Hashable, int]:
+    try:
+        new_collection = __map_and_flatten_collection(collection, to_hashable)
+    except TypeError as e:
+        raise TypeError("stats.count_occurrence: {}".format(e))
+    except ValueError as e:
+        raise ValueError("stats.count_occurrence: {}".format(e))
+    
+    try:
+        items, occurrences = np.unique(new_collection, return_counts = True)
+        return dict(zip(items, occurrences))
+    except Exception as e:
+        raise TypeError("stats.count_occurrence: Cannot count occurrences " + \
+                        "on '{}'. {}".format(new_collection, e))
+
+
 def calc_mean(collection: Iterable[Any],
               to_number: Optional[Callable[Any, Number]] = None) -> float:
     try:
@@ -90,33 +108,15 @@ def calc_median(collection: Iterable[Any],
                         "Improper element types. {}".format(e))
 
 
-# def calc_mode(collection: Iterable[Any],
-#               to_hashable: Optional[Callable[[Any], Hashable]] = None) -> Any:
-#     """
-#     Note: should be faster than scipy.stats.mode(...) since scipy's function
-#     loops per unique value (O(n^2)). TODO: test speed for verification.
+def calc_mode(collection: Iterable[Any],
+              to_hashable: Optional[Callable[[Any], Hashable]] = None) -> Any:
+    """
+    Note: should be faster than scipy.stats.mode(...) since scipy's function
+    loops per unique value (O(n^2)). TODO: test speed for verification.
     
-#     """
-#     occurrences = count_value_occurences(collection, to_map)
-#     return max(occurrences, key = lambda x : occurrences[x])
-
-
-def count_occurrences(collection: Iterable[Any],
-                      to_hashable: Optional[Callable[[Any], Hashable]] = None
-        ) -> Dict[Hashable, int]:
-    try:
-        new_collection = __map_and_flatten_collection(collection, to_hashable)
-    except TypeError as e:
-        raise TypeError("stats.count_occurrence: {}".format(e))
-    except ValueError as e:
-        raise ValueError("stats.count_occurrence: {}".format(e))
-    
-    try:
-        items, occurrences = np.unique(new_collection, return_counts = True)
-        return dict(zip(items, occurrences))
-    except Exception as e:
-        raise TypeError("stats.count_occurrence: Cannot count occurrences " + \
-                        "on '{}'. {}".format(new_collection, e))
+    """
+    occurrences = count_occurrences(collection, to_hashable)
+    return max(occurrences, key = lambda x : occurrences[x])
 
 
 #########################################
