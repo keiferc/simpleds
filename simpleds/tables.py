@@ -25,6 +25,8 @@ import pandas as pd
 import numpy as np 
 import scipy as sp 
 
+from simpleds.types import Tabular
+
 from typing import Any, Dict, Generator, Iterable
 
 
@@ -34,7 +36,7 @@ from typing import Any, Dict, Generator, Iterable
 #                                       #
 #########################################
 
-def flatten(collection: Iterable[Any]) -> Generator:
+def flatten(collection: Tabular) -> Generator:
     """
     Note: since generators return generator objects, and since strings are 
     iterables of strings, recursively returning a generator object on a string

@@ -5,13 +5,13 @@ functions for data science usage.
 
 ## Functions
 
-### `simpleds.stats.calc_mean(collection)`
+### `simpleds.stats.calc_mean(collection, Optional[to_number])`
 Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers. If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
-| `to_number` | `Callable[Any, Number]` | A function that takes in any type and returns a corresponding number. | *optional* |
+| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
+| `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
 
 Returns:
 
@@ -24,7 +24,7 @@ Raises:
 | Type | Description |
 | ---- | ----------- |
 | `ValueError` | Raised if calculating mean on an empty collection. |
-| `TypeError` | Raised if calculating mean on non-collection of numbers. |
+| `TypeError` | Raised if calculating mean on something other than a collection of numbers. |
 
 Examples:
 
@@ -55,13 +55,14 @@ Examples:
 6.666666666666667
 ```
 
-### `simpleds.stats.calc_median(collection)`
+### `simpleds.stats.calc_median(collection, Optional[to_number])`
 
 Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `List[number]` or `Set[number]`| A one-dimensional collection of numbers. | *required* |
+| `collection` | `Iterable[Number]` or `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
+| `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
 
 Returns:
 
@@ -71,10 +72,10 @@ Returns:
 
 Raises:
 
-| Error | Description |
+| Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if unable to calculate median of the given collection. |
-| `TypeError` | Raised if given a collection of non-numerical values. |
+| `ValueError` | Raised if calculating median on an empty collection. |
+| `TypeError` | Raised if calculating median on something other than a collection of numbers. |
 
 Examples:
 

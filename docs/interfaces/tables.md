@@ -14,7 +14,7 @@ Parameters:
 
 | Name | Type | Description | Default |
 | ---- | ---- | ----------- | ------- |
-| `collection` | `Iterable[Any]` | An n-dimensional collection of values. | *required* |
+| `collection` | `Tabular` | A tabular (`list`, `set`, `tuple`, or `dict`) of values. | *required* |
 
 Returns:
 
@@ -26,7 +26,7 @@ Raises:
 
 | Error | Description |
 | ---- | ----------- |
-| `TypeError` | Raised if given a non-iterable. *Note*: this function treats strings as non-iterables.|
+| `TypeError` | Raised if given a non-iterable. *Note*: this function treats strings as non-iterables and it is an unchecked `RuntimeError` to pass in non-`Tabular` arguments.|
 
 Examples:
 

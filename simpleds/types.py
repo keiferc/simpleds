@@ -21,8 +21,11 @@ Documentation for ``simpleds.types`` is built using MkDocs. Run
 `mkdocs serve` to view docs.
 
 """
-from typing import (Any, Callable, Dict, Generator, Iterable, List, Optional,
-                    Set, Tuple, TypeVar, Union)
+import numpy as np
+import pandas as pd
+
+from typing import (Any, Callable, Dict, Generator, Hashable, Iterable, List, 
+                    Optional, Set, Tuple, TypeVar, Union)
 
 
 #########################################
@@ -32,3 +35,5 @@ from typing import (Any, Callable, Dict, Generator, Iterable, List, Optional,
 #########################################
 
 Number = TypeVar('Number', int, float, complex)
+
+Tabular = TypeVar('Tabular', list, set, tuple, dict)
