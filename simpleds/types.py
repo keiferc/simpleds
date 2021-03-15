@@ -36,4 +36,8 @@ from typing import (Any, Callable, Dict, Generator, Hashable, Iterable, List,
 
 Number = TypeVar('Number', int, float, complex)
 
+Sortable = TypeVar('Sortable', Number, str) # Temporary solution 
+    # TODO: switch to binding typevar to a custom abstract base class
+    #       that contains methods __lt__, __gt__, __le__, __ge__
+
 Tabular = TypeVar('Tabular', list, set, tuple, dict)
