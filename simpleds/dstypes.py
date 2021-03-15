@@ -1,14 +1,14 @@
 """
-simpleds.tables
-===============
+simpleds.dstypes
+================
 
 Provides
     - Types (TypeVars and NewTypes) for data science use.
 
 Metadata
 --------
-:Module:        ``simpleds.types``
-:Filename:      `types.py <https://github.com/keiferc/simpleds>`_
+:Module:        ``simpleds.dstypes``
+:Filename:      `dstypes.py <https://github.com/keiferc/simpleds>`_
 :Author:        `@keiferc <https://github.com/keiferc>`_
 :Date:          08 Feb. 2021
 :Version:       0.0.0-alpha
@@ -17,7 +17,7 @@ Metadata
 
 Documentation
 -------------
-Documentation for ``simpleds.types`` is built using MkDocs. Run 
+Documentation for ``simpleds.dstypes`` is built using MkDocs. Run 
 `mkdocs serve` to view docs.
 
 """

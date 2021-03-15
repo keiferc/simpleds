@@ -7,5 +7,5 @@ nav:
     - Docs:
         - simpleds.stats: interfaces/stats.md
         - simpleds.tables: interfaces/tables.md
-        - simpleds.types: interfaces/types.md
+        - simpleds.dstypes: interfaces/dstypes.md
     - Examples: examples.md

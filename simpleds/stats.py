@@ -26,7 +26,7 @@ import numpy as np
 import scipy as sp
 
 import simpleds.tables as tables
-from simpleds.types import Number, Sortable
+from simpleds.dstypes import Number, Sortable
 
 from typing import (Any, Callable, Dict, Hashable, Iterable, List, Optional,
                     Set, Tuple, Union)

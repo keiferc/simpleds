@@ -25,7 +25,7 @@ import pandas as pd
 import numpy as np 
 import scipy as sp 
 
-from simpleds.types import Tabular
+from simpleds.dstypes import Tabular
 
 from typing import Any, Dict, Generator, Iterable
 
