@@ -1,11 +1,13 @@
 # simpleds.stats
 
 `simpleds.stats` is a Python 3 module that contains simple statistical 
-functions for data science usage.
+functions for data science usage. For readability, please assume the 
+function names are prepended with the module and package name (e.g.
+`calc_mean` is the same as `simpleds.stats.calc_mean`).
 
 ## Central Tendency Functions
 
-### `simpleds.stats.calc_mean(collection, to_number = None)`
+### `calc_mean(collection, to_number = None)`
 Returns the mean of a given collection.
 
 Parameters:
@@ -62,7 +64,7 @@ Examples:
 3.0
 ```
 
-### `simpleds.stats.calc_median(collection, to_number = None)`
+### `calc_median(collection, to_number = None)`
 Returns the median of a given collection.
 
 Parameters:
@@ -119,7 +121,7 @@ Examples:
 3.0
 ```
 
-### `simpleds.stats.calc_mode(collection, to_hashable = None)`
+### `calc_mode(collection, to_hashable = None)`
 Returns the mode of a given collection. *Note*: numpy type casting applies to
 return values.
 
@@ -189,7 +191,7 @@ Examples:
 '11'
 ```
 
-### `simpleds.stats.count_occurrences(collection, to_hashable = None)`
+### `count_occurrences(collection, to_hashable = None)`
 
 Counts the number of times a value occurs in the collection. *Note*: numpy type casting applies to returned `dict`'s keys.
 
@@ -252,27 +254,27 @@ Examples:
 
 ## Hypothesis Testing Functions
 
-### `simpleds.stats.calc_margin_of_error(...)`
+### `calc_margin_of_error(...)`
 Coming soon.
 
-### `simpleds.stats.calc_standard_deviation(...)`
+### `calc_standard_deviation(...)`
 Coming soon.
 
-### `simpleds.stats.calc_standard_error(...)`
+### `calc_standard_error(...)`
 Coming soon.
 
-### `simpleds.stats.conduct_chi_squared_test(...)`
+### `conduct_chi_squared_test(...)`
 Coming soon.
 
-### `simpleds.stats.conduct_t_test(...)`
+### `conduct_t_test(...)`
 Coming soon.
 
 
 ## Sampling Functions
 
-### `simpleds.stats.calc_sample_size(...)`
+### `calc_sample_size(...)`
 Coming soon.
 
-### `simpleds.stats.calc_confidence_level(...)`
+### `calc_confidence_level(...)`
 Coming soon.
 

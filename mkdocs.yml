@@ -5,7 +5,8 @@ nav:
     - Installation: installation.md
     - Getting Started: getting-started.md
     - Docs:
+        - simpleds.dstypes: interfaces/dstypes.md
+        - simpleds.lp: interfaces/lp.md
         - simpleds.stats: interfaces/stats.md
         - simpleds.tables: interfaces/tables.md
-        - simpleds.dstypes: interfaces/dstypes.md
     - Examples: examples.md

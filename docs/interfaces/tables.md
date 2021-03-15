@@ -1,12 +1,14 @@
 # simpleds.tables
 
 `simpleds.tables` is a Python 3 module that contains functions for operating
-on data tables (e.g. dataframes, ndarrays, iterables).
+on data tables (e.g. dataframes, ndarrays, iterables). For readability, please
+assume that all function names are prepended with the module and package name 
+(e.g. `flatten` is the same as `simpleds.tables.flatten`).
 
 
 ## Functions
 
-### `simpleds.tables.flatten(collection)`
+### `flatten(collection)`
 A generator that recursively flattens a given collection. *Note*: this 
 function treats strings as non-iterables.
 
