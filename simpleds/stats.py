@@ -27,19 +27,10 @@ import numpy as np
 import scipy as sp
 
 import simpleds.tables as tables
-from simpleds.types import Number
+from simpleds.types import Number, Sortable
 
 from typing import (Any, Callable, Dict, Hashable, Iterable, List, Optional,
-                    Set, Tuple, TypeVar, Union)
-
-
-#########################################
-#                                       #
-#       Type Definitions                #
-#                                       #
-#########################################
-
-Number = TypeVar('Number', int, float, complex)
+                    Set, Tuple, Union)
 
 
 #########################################
@@ -47,6 +38,13 @@ Number = TypeVar('Number', int, float, complex)
 #       Function Definitions            #
 #                                       #
 #########################################
+
+# TODO: add `default` param to all collection functions -- value to 
+# return if iterable is empty
+
+#===========================#
+# Descriptive statistics    #
+#===========================#
 
 def count_occurrences(collection: Iterable[Any],
                       to_hashable: Optional[Callable[[Any], Hashable]] = None
@@ -117,6 +115,59 @@ def calc_mode(collection: Iterable[Any],
     """
     occurrences = count_occurrences(collection, to_hashable)
     return max(occurrences, key = lambda x : occurrences[x])
+
+
+def get_range(collection: Iterable[Any],
+              to_sortable: Optional[Callable[[Any], Sortable]] = None,
+              default: Optional[Sortable] = None) -> Tuple[Sortable, Sortable]:
+    return (min(collection, to_sortable, default), 
+            max(collection, to_sortable, default)) # TODO: test
+
+
+#===========================#
+# Hypothesis Testing        #
+#===========================#
+
+def calc_margin_of_error(collection: Iterable[Any],
+                         to_number: Optional[Callable[[Any], Number]] = None
+        ) -> float:
+    pass # TODO)
+
+
+def calc_standard_deviation(collection: Iterable[Any],
+                            to_number: Optional[Callable[[Any], Number]] = None
+        ) -> float:
+    pass # TODO
+
+
+def calc_standard_error(collection: Iterable[Any],
+                        to_number: Optional[Callable[[Any], Number]] = None
+        ) -> float:
+    pass # TODO
+
+
+def conduct_t_test():
+    pass # TODO
+
+
+def conduct_chi_squared_test():
+    pass # TODO
+
+
+#===========================#
+# Sampling                  #
+#===========================#
+
+def calc_sample_size():
+    pass 
+
+
+def calc_confidence_level():
+    pass
+
+
+def calc_confidence_interval():
+    pass
 
 
 #########################################
