@@ -43,7 +43,7 @@ from typing import (Any, Callable, Dict, Hashable, Iterable, List, Optional,
 # return if iterable is empty
 
 #===========================#
-# Descriptive statistics    #
+# Central Tendencies        #
 #===========================#
 
 def count_occurrences(collection: Iterable[Any],
@@ -146,11 +146,11 @@ def calc_standard_error(collection: Iterable[Any],
     pass # TODO
 
 
-def conduct_t_test():
+def conduct_chi_squared_test():
     pass # TODO
 
 
-def conduct_chi_squared_test():
+def conduct_t_test():
     pass # TODO
 
 
@@ -163,10 +163,6 @@ def calc_sample_size():
 
 
 def calc_confidence_level():
-    pass
-
-
-def calc_confidence_interval():
     pass
 
 

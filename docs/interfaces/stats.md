@@ -3,7 +3,7 @@
 `simpleds.stats` is a Python 3 module that contains simple statistical 
 functions for data science usage.
 
-## Functions
+## Central Tendency Functions
 
 ### `simpleds.stats.calc_mean(collection, to_number = None)`
 Returns the mean of a given collection.
@@ -248,3 +248,31 @@ Examples:
                              'val5': (2, 2.0)})
 {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
 ```
+
+
+## Hypothesis Testing Functions
+
+### `simpleds.stats.calc_margin_of_error(...)`
+Coming soon.
+
+### `simpleds.stats.calc_standard_deviation(...)`
+Coming soon.
+
+### `simpleds.stats.calc_standard_error(...)`
+Coming soon.
+
+### `simpleds.stats.conduct_chi_squared_test(...)`
+Coming soon.
+
+### `simpleds.stats.conduct_t_test(...)`
+Coming soon.
+
+
+## Sampling Functions
+
+### `simpleds.stats.calc_sample_size(...)`
+Coming soon.
+
+### `simpleds.stats.calc_confidence_level(...)`
+Coming soon.
+
