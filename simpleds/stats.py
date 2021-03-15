@@ -7,7 +7,7 @@ Provides
 
 Metadata
 --------
-:Module:        ``simpleds``
+:Module:        ``simpleds.stats``
 :Filename:      `stats.py <https://github.com/keiferc/simpleds>`_
 :Author:        `@keiferc <https://github.com/keiferc>`_
 :Date:          08 Feb. 2021
