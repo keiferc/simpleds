@@ -110,7 +110,7 @@ Examples:
 ```python
 # Calculating median on a collection of non-numbers (string-integer tuples)
 >>> simpleds.stats.calc_median([('val1', 11), ('val2', 7), ('val5', 2)], 
-...                   lambda tup: tup[1])
+...                            lambda tup: tup[1])
 7.0
 ```
 ```python
@@ -173,7 +173,7 @@ Examples:
 ```python
 # Called on second values in a 2-tuple of strings
 >>> simpleds.stats.calc_mode([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
-...                 lambda tup: tup[1])
+...                          lambda tup: tup[1])
 'x'
 ```
 ```python
@@ -184,8 +184,8 @@ Examples:
 ```python
 # Called on a hybrid collection of values
 >>> simpleds.stats.calc_mode({'val1': 11, 
-                     'val2': {'x': 5, 'y': 'foo'}, 
-                     'val5': (2, 2.0)})
+...                  'val2': {'x': 5, 'y': 'foo'}, 
+...                  'val5': (2, 2.0)})
 '11'
 ```
 
@@ -231,20 +231,20 @@ Examples:
 ```
 ```python
 # Counting occurrences on a dict of integers
->>> simpleds.stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11}) \
+>>> simpleds.stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11})
 {7:1, 11: 2}
 ```
 ```python
 # Counting occurrences of second values in a 2-tuple of strings
->>> simpleds.stats.count_occurrences([('val1', 'x'), ('val2', 'x'), ('val5', 'y')],
-...                         lambda tup: tup[1])
+>>> simpleds.stats.count_occurrences([('v1', 'x'), ('v2', 'x'), ('v5', 'y')],
+...                                  lambda tup: tup[1])
 {'x': 2, 'y': 1}
 ```
 ```python
 # Counting occurrences on a hybrid collection of values
 >>> simpleds.stats.count_occurrences({'val1': 11, 
-                             'val2': {'x': 5, 'y': 'foo'}, 
-                             'val5': (2, 2.0)})
+...                                   'val2': {'x': 5, 'y': 'foo'}, 
+...                                   'val5': (2, 2.0)})
 {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
 ```
 
@@ -313,7 +313,7 @@ Examples:
 ```python
 # Called on second values in a 2-tuple of strings
 >>> simpleds.stats.get_range([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
-...                 lambda tup: tup[1])
+...                          lambda tup: tup[1])
 ('x', 'y')
 ```
 ```python
