@@ -208,7 +208,7 @@ def __map_and_flatten_collection(collection: Iterable[Any],
         new_collection = list(tables.flatten(new_collection))
     except TypeError:
         raise TypeError("Improper format. '{}' ".format(collection) + \
-                        "is not a Tabular.")
+                        "is not a simpleds.dstypes.Tabular.")
     
     return new_collection
 

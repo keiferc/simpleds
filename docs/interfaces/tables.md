@@ -1,9 +1,7 @@
 # simpleds.tables
 
 `simpleds.tables` is a Python 3 module that contains functions for operating
-on data tables (e.g. dataframes, ndarrays, iterables). For readability, please
-assume that all function names are prepended with the module and package name 
-(e.g. `flatten` is the same as `simpleds.tables.flatten`).
+on data tables (e.g. dataframes, ndarrays, iterables).
 
 
 ## Functions
@@ -34,11 +32,11 @@ Examples:
 
 ```python
 # Flattening an irregular multi-dimensional list of integers
->>> list(tables.flatten([[[1], [2, 3]], 4]))
+>>> list(simpleds.tables.flatten([[[1], [2, 3]], 4]))
 [1, 2, 3, 4]
 ```
 ```python
 # Flattening an irregular multi-dimensional collection of mixed values
->>> list(tables.flatten({'a': [1.0, {'bar'}], 'b': (-2, True)}))
+>>> list(simpleds.tables.flatten({'a': [1.0, {'bar'}], 'b': (-2, True)}))
 [1.0, 'bar', -2, True]
 ```

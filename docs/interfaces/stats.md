@@ -1,9 +1,7 @@
 # simpleds.stats
 
 `simpleds.stats` is a Python 3 module that contains simple statistical 
-functions for data science usage. For readability, please assume the 
-function names are prepended with the module and package name (e.g.
-`calc_mean` is the same as `simpleds.stats.calc_mean`).
+functions for data science usage.
 
 ## Central Tendency Functions
 
@@ -60,7 +58,7 @@ Examples:
 ```
 ```python
 # Calculating mean on a hybrid collection of numbers
->>> stats.calc_mean({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
+>>> simpleds.stats.calc_mean({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
 3.0
 ```
 
@@ -91,33 +89,33 @@ Examples:
 
 ```python
 # Calculating median on a one-dimensional list of integers
->>> stats.calc_median([1, 2, 4])
+>>> simpleds.stats.calc_median([1, 2, 4])
 2.0
 ```
 ```python
 # Calculating median on an irregular n-dimensional list of floats
->>> stats.calc_median([[[1.0, 5.0], [2.0, 4.0]], [3.0]])
+>>> simpleds.stats.calc_median([[[1.0, 5.0], [2.0, 4.0]], [3.0]])
 3.0
 ```
 ```python
 # Calculating median on a set of numbers
->>> stats.calc_median({3, 1.0, 2, 4})
+>>> simpleds.stats.calc_median({3, 1.0, 2, 4})
 2.5
 ```
 ```python
 # Calculating median on a dict of integers
->>> stats.calc_median({'val1': 11, 'val2': 7, 'val5': 2})
+>>> simpleds.stats.calc_median({'val1': 11, 'val2': 7, 'val5': 2})
 7.0
 ```
 ```python
 # Calculating median on a collection of non-numbers (string-integer tuples)
->>> stats.calc_median([('val1', 11), ('val2', 7), ('val5', 2)], 
+>>> simpleds.stats.calc_median([('val1', 11), ('val2', 7), ('val5', 2)], 
 ...                   lambda tup: tup[1])
 7.0
 ```
 ```python
 # Calculating median on a hybrid collection of numbers
->>> stats.calc_median({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
+>>> simpleds.stats.calc_median({'val1': 1.0, 'val2': [2, (3.0, 4)], 'val5': 5})
 3.0
 ```
 
@@ -149,43 +147,43 @@ Examples:
 
 ```python
 # Called on a one-dimensional list of integers
->>> stats.calc_mode([1, 2, 2, 4])
+>>> simpleds.stats.calc_mode([1, 2, 2, 4])
 2
 ```
 ```python
 # Called on a one-dimensional list of numbers
->>> stats.calc_mode([1, 2, 2.0, 4, 1.0])
+>>> simpleds.stats.calc_mode([1, 2, 2.0, 4, 1.0])
 1.0
 ```
 ```python
 # Called on an irregular n-dimensional list of floats
->>> stats.calc_mode([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
+>>> simpleds.stats.calc_mode([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
 5.0
 ```
 ```python
 # Called on a set of numbers (note: sets can only contain unique elements)
->>> stats.calc_mode({3, 1.0, 2, 2, 2, 1, 4})
+>>> simpleds.stats.calc_mode({3, 1.0, 2, 2, 2, 1, 4})
 1.0
 ```
 ```python
 # Called on a dict of integers
->>> stats.calc_mode({'val1': 11, 'val2': 7, 'val5': 11})
+>>> simpleds.stats.calc_mode({'val1': 11, 'val2': 7, 'val5': 11})
 11
 ```
 ```python
 # Called on second values in a 2-tuple of strings
->>> stats.calc_mode([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+>>> simpleds.stats.calc_mode([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
 ...                 lambda tup: tup[1])
 'x'
 ```
 ```python
 # Called on a hybrid collection of numbers
->>> stats.calc_mode({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
+>>> simpleds.stats.calc_mode({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
 2.0
 ```
 ```python
 # Called on a hybrid collection of values
->>> stats.calc_mode({'val1': 11, 
+>>> simpleds.stats.calc_mode({'val1': 11, 
                      'val2': {'x': 5, 'y': 'foo'}, 
                      'val5': (2, 2.0)})
 '11'
@@ -218,33 +216,33 @@ Examples:
 
 ```python
 # Counting occurrences on a one-dimensional list of integers
->>> stats.count_occurrences([1, 2, 4])
+>>> simpleds.stats.count_occurrences([1, 2, 4])
 {1: 1, 2: 1, 4: 1}
 ```
 ```python
 # Counting occurrences on an irregular n-dimensional list of floats
->>> stats.count_occurrences([[[1.0, 5.0], [2.0, 4.0]], [3.0, 2.0]])
+>>> simpleds.stats.count_occurrences([[[1.0, 5.0], [2.0, 4.0]], [3.0, 2.0]])
 {1.0: 1, 2.0: 2, 3.0: 1, 4.0: 1, 5.0: 1}
 ```
 ``` python
 # Counting occurrences on a set of numbers (sets can't have duplicates)
->>> stats.count_occurrences({3, 1.0, 2, 1.5, 4, 1, 1})
+>>> simpleds.stats.count_occurrences({3, 1.0, 2, 1.5, 4, 1, 1})
 {1.0: 1, 1.5: 1, 2.0: 1, 3.0: 1, 4.0: 1}
 ```
 ```python
 # Counting occurrences on a dict of integers
->>> stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11}) \
+>>> simpleds.stats.count_occurrences({'val1': 11, 'val2': 7, 'val5': 11}) \
 {7:1, 11: 2}
 ```
 ```python
 # Counting occurrences of second values in a 2-tuple of strings
->>> stats.count_occurrences([('val1', 'x'), ('val2', 'x'), ('val5', 'y')],
+>>> simpleds.stats.count_occurrences([('val1', 'x'), ('val2', 'x'), ('val5', 'y')],
 ...                         lambda tup: tup[1])
 {'x': 2, 'y': 1}
 ```
 ```python
 # Counting occurrences on a hybrid collection of values
->>> stats.count_occurrences({'val1': 11, 
+>>> simpleds.stats.count_occurrences({'val1': 11, 
                              'val2': {'x': 5, 'y': 'foo'}, 
                              'val5': (2, 2.0)})
 {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
@@ -279,53 +277,53 @@ Examples:
 
 ```python
 # Called on a one-dimensional list of integers
->>> stats.get_range([1, 2, 2, 4])
+>>> simpleds.stats.get_range([1, 2, 2, 4])
 (1, 4)
 ```
 ```python
 # Called on a one-dimensional list of numbers
->>> stats.get_range([2, 2.0, 4, 1.0])
+>>> simpleds.stats.get_range([2, 2.0, 4, 1.0])
 (1.0, 4)
 ```
 ```python
 # Called on a one-dimensional list of same-value numbers
->>> stats.get_range([1, 1.0])
+>>> simpleds.stats.get_range([1, 1.0])
 (1, 1)
 ```
 ```python
 # Called on a singleton
->>> stats.get_range({2.0})
+>>> simpleds.stats.get_range({2.0})
 (2.0, 2.0)
 ```
 ```python
 # Called on an irregular n-dimensional list of floats
->>> stats.get_range([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
+>>> simpleds.stats.get_range([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
 (1.0, 5.0)
 ```
 ```python
 # Called on a set of number 
->>> stats.get_range({3, 1.0, 2, 2, 2, 1, 4})
+>>> simpleds.stats.get_range({3, 1.0, 2, 2, 2, 1, 4})
 (1, 4)
 ```
 ```python
 # Called on a dict of integers
->>> stats.get_range({'val1': 11, 'val2': 7, 'val5': 11})
+>>> simpleds.stats.get_range({'val1': 11, 'val2': 7, 'val5': 11})
 (7, 11)
 ```
 ```python
 # Called on second values in a 2-tuple of strings
->>> stats.get_range([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+>>> simpleds.stats.get_range([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
 ...                 lambda tup: tup[1])
 ('x', 'y')
 ```
 ```python
 # Called on a n-dimensional hybrid collection of numbers
->>> stats.get_range({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
+>>> simpleds.stats.get_range({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
 (2, 5)
 ```
 ```python
 # Called on an empty list, given a default
->>> stats.get_range([], default = False)
+>>> simpleds.stats.get_range([], default = False)
 (False, False)
 ```
 
