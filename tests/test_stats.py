@@ -62,7 +62,7 @@ def test_count_occurrences():
 
     # Given a bad mapping function
     with pytest.raises(ValueError):
-        stats.count_occurrences([1, 2], lambda: x / 0)
+        stats.count_occurrences([1, 2], lambda x: x / 0)
 
 
 def test_calc_mean():
@@ -113,7 +113,7 @@ def test_calc_mean():
     
     # Given a bad mapping function
     with pytest.raises(ValueError):
-        stats.calc_mean([1, 2], lambda: x / 0)
+        stats.calc_mean([1, 2], lambda x: x / 0)
 
 
 def test_calc_median():
@@ -164,7 +164,7 @@ def test_calc_median():
 
     # Given a bad mapping function
     with pytest.raises(ValueError):
-        stats.calc_median([1, 2], lambda: x / 0)
+        stats.calc_median([1, 2], lambda x: x / 0)
 
 
 def test_calc_mode():
@@ -214,7 +214,7 @@ def test_calc_mode():
 
     # Given a bad mapping function
     with pytest.raises(ValueError):
-        stats.calc_mode([1, 2], lambda: x / 0)
+        stats.calc_mode([1, 2], lambda x: x / 0)
 
 
 def test_get_range():
@@ -259,21 +259,21 @@ def test_get_range():
     with pytest.raises(ValueError):
         stats.get_range([])
 
-    # # Called on an empty hybrid collection
-    # with pytest.raises(ValueError):
-    #     stats.get_range({'val1': [], 'val2': {'v1': []}})
+    # Called on an empty hybrid collection
+    with pytest.raises(ValueError):
+        stats.get_range({'val1': [], 'val2': {'v1': []}})
 
-    # # Given a string (collection of chars)
-    # with pytest.raises(TypeError):
-    #     stats.get_range('foo')
+    # Given a string (collection of chars)
+    with pytest.raises(TypeError):
+        stats.get_range('foo')
 
-    # # Given a non-collection
-    # with pytest.raises(TypeError):
-    #     stats.get_range(lambda x: x)
+    # Given a non-collection
+    with pytest.raises(TypeError):
+        stats.get_range(lambda x: x)
 
-    # # Given a bad mapping function
-    # with pytest.raises(ValueError):
-    #     stats.get_range([1, 2], lambda: x / 0)
+    # Given a bad mapping function
+    with pytest.raises(ValueError):
+        stats.get_range([1, 2], lambda x: x / 0)
 
 
 #### HYPOTHESIS TESTING

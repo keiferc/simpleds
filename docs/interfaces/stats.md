@@ -278,9 +278,56 @@ Raises:
 Examples:
 
 ```python
-# Coming soon
+# Called on a one-dimensional list of integers
+>>> stats.get_range([1, 2, 2, 4])
+(1, 4)
 ```
-
+```python
+# Called on a one-dimensional list of numbers
+>>> stats.get_range([2, 2.0, 4, 1.0])
+(1.0, 4)
+```
+```python
+# Called on a one-dimensional list of same-value numbers
+>>> stats.get_range([1, 1.0])
+(1, 1)
+```
+```python
+# Called on a singleton
+>>> stats.get_range({2.0})
+(2.0, 2.0)
+```
+```python
+# Called on an irregular n-dimensional list of floats
+>>> stats.get_range([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]])
+(1.0, 5.0)
+```
+```python
+# Called on a set of number 
+>>> stats.get_range({3, 1.0, 2, 2, 2, 1, 4})
+(1, 4)
+```
+```python
+# Called on a dict of integers
+>>> stats.get_range({'val1': 11, 'val2': 7, 'val5': 11})
+(7, 11)
+```
+```python
+# Called on second values in a 2-tuple of strings
+>>> stats.get_range([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+...                 lambda tup: tup[1])
+('x', 'y')
+```
+```python
+# Called on a n-dimensional hybrid collection of numbers
+>>> stats.get_range({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5})
+(2, 5)
+```
+```python
+# Called on an empty list, given a default
+>>> stats.get_range([], default = False)
+(False, False)
+```
 
 ## Hypothesis Testing Functions
 
