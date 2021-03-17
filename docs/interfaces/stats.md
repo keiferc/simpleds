@@ -192,7 +192,6 @@ Examples:
 ```
 
 ### `count_occurrences(collection, to_hashable = None)`
-
 Counts the number of times a value occurs in the collection. *Note*: numpy type casting applies to returned `dict`'s keys.
 
 Parameters:
@@ -249,6 +248,37 @@ Examples:
                              'val2': {'x': 5, 'y': 'foo'}, 
                              'val5': (2, 2.0)})
 {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
+```
+
+### `get_range(collection, to_sortable = None, default = None)`
+Returns the inclusive range of the flattened given collection in 2-tuple 
+form. Minimum value on the left. Maximum value on the right.
+
+Parameters:
+
+| Name | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| `collection` | `Iterable[Any]` | An n-dimensional collection of sortables. If a collection of non-sortables is provided, user can provide `to_sortable` for mapping. | *required* |
+| `to_sortable` | `Callable[[Any], Sortable]` | A function that takes in any type and returns a corresponding Sortable (i.e. a value on which a relational comparator can be used). | *optional* |
+| `default` | `Sortable` | A value to return for each element in the tuple if they cannot be found (e.g. due to having given an empty collection). | *optional* |
+
+Returns:
+
+| Type | Description |
+| ---- | ----------- | 
+| `Tuple[Sortable, Sortable]` | A 2-tuple where the left is the minimum value and the right is the maximum value. |
+
+Raises:
+
+| Type | Description |
+| ---- | ----------- |
+| `ValueError` | Raised if given `to_sortable` fails to map. |
+| `TypeError` | Raised if attempting to get range on a collection of non-sortable values. |
+
+Examples:
+
+```python
+# Coming soon
 ```
 
 

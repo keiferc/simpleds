@@ -14,6 +14,9 @@ import simpleds.stats as stats
 #########################################
 
 ######## Public Functions ########
+
+#### CENTRAL TENDENCY FUNCTIONS
+
 def test_count_occurrences():
     # Counting occurrences on a one-dimensional list of integers
     assert stats.count_occurrences([1, 2, 4]) == {1: 1, 2: 1, 4: 1}
@@ -214,6 +217,69 @@ def test_calc_mode():
         stats.calc_mode([1, 2], lambda: x / 0)
 
 
+def test_get_range():
+    # Called on a one-dimensional list of integers
+    assert stats.get_range([1, 2, 2, 4]) == (1, 4)
+
+    # Called on a one-dimensional list of numbers
+    assert stats.get_range([1, 2, 2.0, 4, 1.0]) == (1, 4)
+
+    # Called on a one-dimensional list of same numbers
+    assert stats.get_range([1, 1.0]) == (1, 1)
+
+    # Called on a singleton
+    assert stats.get_range({2.0}) == (2.0, 2.0)
+
+    # Called on an irregular n-dimensional list of floats
+    assert stats.get_range([[[1.0, 5.0], [2.0, 5.0, 4.0]], [3.0]]) == (1.0, 5.0)
+
+    # Called on a set of numbers (note: sets can only contain unique elements)
+    assert stats.get_range({3, 1.0, 2, 2, 2, 1, 4}) == (1, 4)
+
+    # Called on a dict of integers
+    assert stats.get_range({'val1': 11, 'val2': 7, 'val5': 11}) == (7, 11)
+
+    # Called on second values in a 2-tuple of strings
+    assert stats.get_range([('val1', 'x'), ('val2', 'x'), ('val5', 'y')], 
+                                   lambda tup: tup[1]) == ('x', 'y')
+
+    # Called on a flattenable, hybrid collection of numbers
+    assert stats.get_range({'val1': 2.0, 'val2': [2.0, (3.0, 2)], 'val5': 5}) \
+        == (2, 5)
+    
+    # Called on an empty collection, given a default
+    assert stats.get_range([], default = False) == (False, False)
+
+    # Called on a flattenable, hybrid collection of values
+    with pytest.raises(TypeError):
+        stats.get_range(
+            {'val1': 11, 'val2': {'x': 5, 'y': 'foo'}, 'val5': (2, 2.0)})
+    
+    # Called on an empty list without a default
+    with pytest.raises(ValueError):
+        stats.get_range([])
+
+    # # Called on an empty hybrid collection
+    # with pytest.raises(ValueError):
+    #     stats.get_range({'val1': [], 'val2': {'v1': []}})
+
+    # # Given a string (collection of chars)
+    # with pytest.raises(TypeError):
+    #     stats.get_range('foo')
+
+    # # Given a non-collection
+    # with pytest.raises(TypeError):
+    #     stats.get_range(lambda x: x)
+
+    # # Given a bad mapping function
+    # with pytest.raises(ValueError):
+    #     stats.get_range([1, 2], lambda: x / 0)
+
+
+#### HYPOTHESIS TESTING
+
+
+#### SAMPLING
 
 ######## Private Helper Functions ########
 

@@ -50,27 +50,21 @@ def count_occurrences(collection: Iterable[Any],
         ) -> Dict[Hashable, int]:
     try:
         new_collection = __map_and_flatten_collection(collection, to_hashable)
-    except TypeError as e:
-        raise TypeError("stats.count_occurrence: {}".format(e))
-    except ValueError as e:
-        raise ValueError("stats.count_occurrence: {}".format(e))
-    
-    try:
-        items, occurrences = np.unique(new_collection, return_counts = True)
-        return dict(zip(items, occurrences))
     except Exception as e:
-        raise TypeError("stats.count_occurrence: Cannot count occurrences " + \
-                        "on '{}'. {}".format(new_collection, e))
+        e.args = ("stats.count_occurrences: {}".format(e),)
+        raise
+    
+    items, occurrences = np.unique(new_collection, return_counts = True)
+    return dict(zip(items, occurrences))
 
 
 def calc_mean(collection: Iterable[Any],
               to_number: Optional[Callable[Any, Number]] = None) -> float:
     try:
         new_collection = __map_and_flatten_collection(collection, to_number)
-    except TypeError as e:
-        raise TypeError("stats.calc_mean: {}".format(e))
-    except ValueError as e:
-        raise ValueError("stats.calc_mean: {}".format(e))
+    except Exception as e:
+        e.args = ("stats.calc_mean: {}".format(e),)
+        raise
 
     if len(new_collection) == 0:
         raise ValueError("stats.calc_mean: Cannot calculate mean on " + \
@@ -88,10 +82,9 @@ def calc_median(collection: Iterable[Any],
                 to_number: Optional[Callable[[Any], Number]] = None) -> float:
     try:
         new_collection = __map_and_flatten_collection(collection, to_number)
-    except TypeError as e:
-        raise TypeError("stats.calc_median: {}".format(e))
-    except ValueError as e:
-        raise ValueError("stats.calc_median: {}".format(e))
+    except Exception as e:
+        e.args = ("stats.calc_median: {}".format(e),)
+        raise
 
     if len(new_collection) == 0:
         raise ValueError("stats.calc_median: Cannot calculate median on " + \
@@ -113,14 +106,33 @@ def calc_mode(collection: Iterable[Any],
     
     """
     occurrences = count_occurrences(collection, to_hashable)
-    return max(occurrences, key = lambda x : occurrences[x])
+
+    try:
+        return max(occurrences, key = lambda x : occurrences[x])
+    except ValueError:
+        raise ValueError("stats.calc_mode: Cannot calculate mode on an " + \
+                         "empty collection.")
 
 
 def get_range(collection: Iterable[Any],
               to_sortable: Optional[Callable[[Any], Sortable]] = None,
               default: Optional[Sortable] = None) -> Tuple[Sortable, Sortable]:
-    return (min(collection, to_sortable, default), 
-            max(collection, to_sortable, default)) # TODO: test
+    try:
+        new_collection = __map_and_flatten_collection(collection, to_sortable)
+    except Exception as e:
+        e.args = ("stats.get_range: {}".format(e),)
+        raise
+
+    try:
+        if default == None:
+            return (min(new_collection), max(new_collection)) 
+        else:
+            return (min(new_collection, default = default), 
+                    max(new_collection, default = default))
+            
+    except ValueError:
+       raise ValueError("stats.get_range: Cannot get range of an empty " + \
+                        "collection.")
 
 
 #===========================#
@@ -130,7 +142,7 @@ def get_range(collection: Iterable[Any],
 def calc_margin_of_error(collection: Iterable[Any],
                          to_number: Optional[Callable[[Any], Number]] = None
         ) -> float:
-    pass # TODO)
+    pass # TODO
 
 
 def calc_standard_deviation(collection: Iterable[Any],
@@ -195,8 +207,8 @@ def __map_and_flatten_collection(collection: Iterable[Any],
     try:
         new_collection = list(tables.flatten(new_collection))
     except TypeError:
-        raise TypeError("Improper format. '{}' is not a " + \
-                        "Tabular.".format(collection))
+        raise TypeError("Improper format. '{}' ".format(collection) + \
+                        "is not a Tabular.")
     
     return new_collection
 
