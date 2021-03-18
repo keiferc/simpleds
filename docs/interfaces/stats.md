@@ -203,6 +203,12 @@ Examples:
 ...                  'val5': (2, 2.0)})
 '11'
 ```
+```python
+# Called on an empty list, given a default
+>>> simpleds.stats.calc_mode([], default = 'empty')
+'empty'
+```
+
 
 ### `count_occurrences(collection, to_hashable = None)`
 Counts the number of times a value occurs in the collection. *Note*: numpy type casting applies to returned `dict`'s keys.
@@ -262,6 +268,7 @@ Examples:
 ...                                   'val5': (2, 2.0)})
 {'11': 1, '2': 1, '2.0': 1, '5': 1, 'foo': 1}
 ```
+
 
 ### `get_range(collection, to_sortable = None, default = None)`
 Returns the inclusive range of the flattened given collection in 2-tuple 
