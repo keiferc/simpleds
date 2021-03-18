@@ -5,7 +5,7 @@ functions for data science usage.
 
 ## Central Tendency Functions
 
-### `calc_mean(collection, to_number = None)`
+### `calc_mean(collection, to_number = None, default = None)`
 Returns the mean of a given collection.
 
 Parameters:
@@ -14,7 +14,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
-| `default` | `float` | A value that is returned if attempting to calculate mean on an empty collection | *optional* |
+| `default` | `float` | A value that is returned if attempting to calculate mean on an empty collection. | *optional* |
 
 Returns:
 
@@ -69,7 +69,7 @@ Examples:
 ```
 
 
-### `calc_median(collection, to_number = None)`
+### `calc_median(collection, to_number = None, default = None)`
 Returns the median of a given collection.
 
 Parameters:
@@ -78,7 +78,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
-| `default` | `float` | A value that is returned if attempting to calculate median on an empty collection | *optional* |
+| `default` | `float` | A value that is returned if attempting to calculate median on an empty collection. | *optional* |
 
 Returns:
 
@@ -133,7 +133,7 @@ Examples:
 ```
 
 
-### `calc_mode(collection, to_hashable = None)`
+### `calc_mode(collection, to_hashable = None, default = None)`
 Returns the mode of a given collection. *Note*: numpy type casting applies to
 return values.
 
@@ -143,7 +143,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of hashables. If a collection of non-hashables is provided, user can provide `to_hashable` for mapping. | *required* |
 | `to_hashable` | `Callable[[Any], Hashable]` | A function that takes in any type and returns a corresponding hashable. | *optional* |
-| `default` | `Hashable` | A hashable that is returned if attempting to calculate mode on an empty collection | *optional* |
+| `default` | `Hashable` | A hashable that is returned if attempting to calculate mode on an empty collection. | *optional* |
 
 Returns:
 
