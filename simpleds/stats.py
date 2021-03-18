@@ -59,7 +59,8 @@ def count_occurrences(collection: Iterable[Any],
 
 
 def calc_mean(collection: Iterable[Any],
-              to_number: Optional[Callable[Any, Number]] = None) -> float:
+              to_number: Optional[Callable[Any, Number]] = None,
+              default: Optional[float] = None) -> float:
     try:
         new_collection = __map_and_flatten_collection(collection, to_number)
     except Exception as e:
@@ -67,6 +68,8 @@ def calc_mean(collection: Iterable[Any],
         raise
 
     if len(new_collection) == 0:
+        if isinstance(default, float):
+            return default
         raise ValueError("stats.calc_mean: Cannot calculate mean on " + \
                          "an empty collection.")
 
@@ -79,7 +82,8 @@ def calc_mean(collection: Iterable[Any],
 
 
 def calc_median(collection: Iterable[Any],
-                to_number: Optional[Callable[[Any], Number]] = None) -> float:
+                to_number: Optional[Callable[[Any], Number]] = None,
+                default: Optional[float] = None) -> float:
     try:
         new_collection = __map_and_flatten_collection(collection, to_number)
     except Exception as e:
@@ -87,6 +91,8 @@ def calc_median(collection: Iterable[Any],
         raise
 
     if len(new_collection) == 0:
+        if isinstance(default, float):
+            return default
         raise ValueError("stats.calc_median: Cannot calculate median on " + \
                          "an empty collection.")
 

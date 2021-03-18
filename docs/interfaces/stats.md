@@ -14,6 +14,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
+| `default` | `float` | A value that is returned if attempting to calculate mean on an empty collection | *optional* |
 
 Returns:
 
@@ -25,7 +26,7 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if unable to calculate mean (e.g. empty collection, failed mapping). |
+| `ValueError` | Raised if unable to calculate mean (e.g. empty collection without default, failed mapping). |
 | `TypeError` | Raised if calculating mean on something other than a collection of numbers. |
 
 Examples:
@@ -61,6 +62,12 @@ Examples:
 >>> simpleds.stats.calc_mean({'val1': 1.0, 'val2': [2.0, (3.0, 4)], 'val5': 5})
 3.0
 ```
+```python
+# Calculating mean on an empty collection, given a float default
+>>> simpleds.stats.calc_mean([], default = 0.0)
+0.0
+```
+
 
 ### `calc_median(collection, to_number = None)`
 Returns the median of a given collection.
@@ -71,6 +78,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of numbers (`int`, `float`, or `complex`). If a collection of non-numbers is provided, user can provide `to_number` for mapping. | *required* |
 | `to_number` | `Callable[[Any], Number]` | A function that takes in any type and returns a corresponding number (`int`, `float`, or `complex`). | *optional* |
+| `default` | `float` | A value that is returned if attempting to calculate median on an empty collection | *optional* |
 
 Returns:
 
@@ -82,7 +90,7 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if unable to calculate mean (e.g. empty collection, failed mapping). |
+| `ValueError` | Raised if unable to calculate mean (e.g. empty collection without default, failed mapping). |
 | `TypeError` | Raised if calculating median on something other than a collection of numbers. |
 
 Examples:
@@ -118,6 +126,12 @@ Examples:
 >>> simpleds.stats.calc_median({'val1': 1.0, 'val2': [2, (3.0, 4)], 'val5': 5})
 3.0
 ```
+```python
+# Calculating median on an empty collection, given a float default
+>>> simpleds.stats.calc_median([], default = 0.0)
+0.0
+```
+
 
 ### `calc_mode(collection, to_hashable = None)`
 Returns the mode of a given collection. *Note*: numpy type casting applies to
