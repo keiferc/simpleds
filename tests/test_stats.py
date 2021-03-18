@@ -101,7 +101,7 @@ def test_calc_mean():
 
     # Given empty collection and non-float default
     with pytest.raises(ValueError):
-        simpleds.stats.calc_mean([], 0)
+        simpleds.stats.calc_mean([])
 
     # Given a string (collection of chars)
     with pytest.raises(TypeError):
@@ -161,7 +161,7 @@ def test_calc_median():
 
     # Given empty collection and non-float default
     with pytest.raises(ValueError):
-        simpleds.stats.calc_median([], 0)
+        simpleds.stats.calc_median([])
     
     # Given a string (collection of chars)
     with pytest.raises(TypeError):
@@ -222,6 +222,13 @@ def test_calc_mode():
     assert simpleds.stats.calc_mode(
             {'val1': 11, 'val2': {'x': 5, 'y': 'foo'}, 'val5': (2, 2.0)}) \
         == '11'
+
+    # Given empty collection and default float
+    assert simpleds.stats.calc_mode([], default = 'empty') == 'empty'
+
+    # Given empty collection and non-float default
+    with pytest.raises(ValueError):
+        simpleds.stats.calc_mode([])
     
     # Called on an empty list
     with pytest.raises(ValueError):

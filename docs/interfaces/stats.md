@@ -143,6 +143,7 @@ Parameters:
 | ---- | ---- | ----------- | ------- |
 | `collection` | `Iterable[Any]` | An n-dimensional collection of hashables. If a collection of non-hashables is provided, user can provide `to_hashable` for mapping. | *required* |
 | `to_hashable` | `Callable[[Any], Hashable]` | A function that takes in any type and returns a corresponding hashable. | *optional* |
+| `default` | `Hashable` | A hashable that is returned if attempting to calculate mode on an empty collection | *optional* |
 
 Returns:
 
@@ -154,7 +155,7 @@ Raises:
 
 | Type | Description |
 | ---- | ----------- |
-| `ValueError` | Raised if unable to calculate mode (e.g. empty collection, failed mapping). |
+| `ValueError` | Raised if unable to calculate mode (e.g. empty collection without default, failed mapping). |
 | `TypeError` | Raised if calculating mode on something other than a collection of hashables. |
 
 Examples:

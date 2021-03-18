@@ -105,7 +105,8 @@ def calc_median(collection: Iterable[Any],
 
 
 def calc_mode(collection: Iterable[Any],
-              to_hashable: Optional[Callable[[Any], Hashable]] = None) -> Any:
+              to_hashable: Optional[Callable[[Any], Hashable]] = None,
+              default: Optional[Hashable] = None) -> Hashable:
     """
     Note: should be faster than scipy.stats.mode(...) since scipy's function
     loops per unique value (O(n^2)). TODO: test speed for verification.
@@ -114,7 +115,10 @@ def calc_mode(collection: Iterable[Any],
     occurrences = count_occurrences(collection, to_hashable)
 
     try:
-        return max(occurrences, key = lambda x : occurrences[x])
+        if default == None:
+            return max(occurrences, key = lambda x : occurrences[x])
+        return max(occurrences, key = lambda x : occurrences[x], 
+                   default = default)
     except ValueError:
         raise ValueError("stats.calc_mode: Cannot calculate mode on an " + \
                          "empty collection.")
