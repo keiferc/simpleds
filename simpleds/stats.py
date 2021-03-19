@@ -23,7 +23,7 @@ Documentation for ``simpleds.stats`` is built using MkDocs. Run
 """
 import pandas as pd 
 import numpy as np 
-import scipy as sp
+import scipy
 
 import simpleds.tables as tables
 from simpleds.dstypes import Number, Sortable
@@ -37,9 +37,6 @@ from typing import (Any, Callable, Dict, Hashable, Iterable, List, Optional,
 #       Function Definitions            #
 #                                       #
 #########################################
-
-# TODO: add `default` param to all collection functions -- value to 
-# return if iterable is empty
 
 #===========================#
 # Central Tendencies        #
@@ -149,30 +146,59 @@ def get_range(collection: Iterable[Any],
 # Hypothesis Testing        #
 #===========================#
 
-def calc_margin_of_error(collection: Iterable[Any],
-                         to_number: Optional[Callable[[Any], Number]] = None
-        ) -> float:
-    pass # TODO
-
-
 def calc_standard_deviation(collection: Iterable[Any],
                             to_number: Optional[Callable[[Any], Number]] = None
         ) -> float:
-    pass # TODO
+    """
+    Returns standard deviation (dispersion of values from mean). Used as a
+    measure of data variability. Convenience wrapper of numpy.std() on
+    evaluation ratings.
+
+    """
+    pass # TODO: np.std
 
 
 def calc_standard_error(collection: Iterable[Any],
                         to_number: Optional[Callable[[Any], Number]] = None
         ) -> float:
-    pass # TODO
+    """
+    Returns standard error of the mean (distance of sample mean to true
+    mean). Used as a measure of accuracy of sample mean.
+
+    """
+    pass # TODO: np.sem
+
+
+def calc_t_score():
+    pass # TODO: scipy.stats.t.ppf
+
+
+def calc_z_score():
+    pass # TODO: scipy.stats.zscore
+
+
+def calc_margin_of_error(collection: Iterable[Any],
+                         to_number: Optional[Callable[[Any], Number]] = None
+        ) -> float:
+    """
+    Given a confidence level, returns the margin of error (half-width of
+    confidence interval of a sample mean). Used as an indicator of the
+    range in which a replicated experiment mean would lie.
+
+    Uses t-values for small samples (n < 30) and z-values for large samples
+    (n >= 30).
+
+    """
+    # TODO: scipy.stats.norm.interval() if len(collection) < 30
+    # TODO: scipy.stats.t.interval() if len(collection) >= 30
 
 
 def conduct_chi_squared_test():
-    pass # TODO
+    pass # TODO: scipy.stats.chi2_contingency
 
 
 def conduct_t_test():
-    pass # TODO
+    pass # TODO: scipy.stats.ttest_*
 
 
 #===========================#
